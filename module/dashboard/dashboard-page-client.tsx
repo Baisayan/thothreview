@@ -29,7 +29,7 @@ import {
   getDashboardStats,
   getMonthlyActivity,
 } from "@/module/dashboard";
-// import ContributionGraph from "@/module/dashboard/contribution-graph";
+import ContributionGraph from "@/module/dashboard/contribution-graph";
 
 const DashboardPageClient = () => {
   const { data: stats, isLoading } = useQuery({
@@ -116,7 +116,7 @@ const DashboardPageClient = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {/* <ContributionGraph /> */}
+          <ContributionGraph />
         </CardContent>
       </Card>
 
