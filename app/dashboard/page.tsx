@@ -1,3 +1,5 @@
+import DashboardPageClient from "@/module/dashboard/dashboard-page-client";
+
 export default function DashboardPage() {
-    return <div>Dashboard Home</div>;
+  return <DashboardPageClient />;
 }
