@@ -3,7 +3,6 @@
 import { ActivityCalendar } from "react-activity-calendar";
 import { useTheme } from "next-themes";
 import { useQuery } from "@tanstack/react-query";
-
 import { getContributionStats } from "@/module/dashboard";
 
 const ContributionGraph = () => {

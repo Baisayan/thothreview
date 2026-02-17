@@ -189,11 +189,9 @@ export async function getContributionStats() {
 
     const token = await getGithubToken();
     const octokit = new Octokit({ auth: token });
-
-    // Get the actual GitHub username from GitHub API
+    
     const { data: user } = await octokit.rest.users.getAuthenticated();
     const username = user.login;
-
     const calender = await fetchUserContribution(token, username);
 
     if (!calender) {

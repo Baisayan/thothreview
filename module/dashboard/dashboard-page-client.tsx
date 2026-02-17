@@ -70,6 +70,7 @@ const DashboardPageClient = () => {
             </p>
           </CardContent>
         </Card>
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Commits</CardTitle>
@@ -82,6 +83,7 @@ const DashboardPageClient = () => {
             <p className="text-xs text-muted-foreground">In the last year</p>
           </CardContent>
         </Card>
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Pull Requests</CardTitle>
@@ -94,6 +96,7 @@ const DashboardPageClient = () => {
             <p className="text-xs text-muted-foreground">All Time</p>
           </CardContent>
         </Card>
+        
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">AI Reviews</CardTitle>
@@ -115,6 +118,7 @@ const DashboardPageClient = () => {
             Visualizing your coding frequency over the last year
           </CardDescription>
         </CardHeader>
+
         <CardContent>
           <ContributionGraph />
         </CardContent>
@@ -128,6 +132,7 @@ const DashboardPageClient = () => {
               Monthly breakdown of commits, PRs and reviews (last 6 months)
             </CardDescription>
           </CardHeader>
+
           <CardContent>
             {isLoadingActivity ? (
               <div className="h-80 w-full flex items-center justify-center">
