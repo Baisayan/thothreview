@@ -12,9 +12,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ExternalLink, Star, Search } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import { useRepositories } from "@/module/repository/use-repos";
-import { RepositoryListSkeleton } from "@/module/repository/repository-skeleton";
-import { useConnectRepository } from "@/module/repository/use-connect-repository";
+import { useRepositories } from "./use-repos";
+import { RepositoryListSkeleton } from "./repository-skeleton";
+import { useConnectRepository } from "./use-connect-repository";
 
 interface Repository {
   id: number;
@@ -39,12 +39,12 @@ const RepositoryPageClient = () => {
   } = useRepositories();
 
   const { mutate: connectRepo } = useConnectRepository();
+  const [searchQuery, setSearchQuery] = useState("");
+  const observerTarget = useRef<HTMLDivElement>(null);
 
   const [localConnectingId, setLocalConnectingId] = useState<number | null>(
     null,
   );
-  const [searchQuery, setSearchQuery] = useState("");
-  const observerTarget = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,9 +53,7 @@ const RepositoryPageClient = () => {
           fetchNextPage();
         }
       },
-      {
-        threshold: 0.1,
-      },
+      { threshold: 0.1 },
     );
 
     const currentTarget = observerTarget.current;
@@ -132,7 +130,7 @@ const RepositoryPageClient = () => {
       </div>
 
       <div className="relative">
-        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-2 top-2.5 size-4 text-muted-foreground" />
         <Input
           placeholder="Search repositories..."
           className="pl-8"
@@ -203,7 +201,7 @@ const RepositoryPageClient = () => {
         {isFetchingNextPage && <RepositoryListSkeleton />}
         {!hasNextPage && allRepositories.length > 0 && (
           <p className="text-center text-muted-foreground">
-            No more repositories
+            That&apos;s all the repositories you have!
           </p>
         )}
       </div>
