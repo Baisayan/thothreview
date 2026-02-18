@@ -150,7 +150,7 @@ export async function disconnectRepository(repositoryId: string) {
   }
 }
 
-export async function disconnectAllRepositories() {
+export async function disconnectAllRepos() {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
