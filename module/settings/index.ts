@@ -139,8 +139,6 @@ export async function disconnectRepository(repositoryId: string) {
       },
     });
 
-    // await decrementRepositoryCount(session.user.id);
-
     revalidatePath("/dashboard/settings", "page");
     revalidatePath("/dashboard/repository", "page");
     revalidatePath("/dashboard/reviews", "page");
@@ -168,24 +166,17 @@ export async function disconnectAllRepositories() {
       },
     });
 
-    // Delete webhooks in parallel
     await Promise.all(
       repositories.map(async (repo) => {
         await deleteWebhook(repo.owner, repo.name);
       }),
     );
 
-    // Delete all repositories from database
     const result = await prisma.repository.deleteMany({
       where: {
         userId: session.user.id,
       },
     });
-
-    // Decrement count by the number of repositories deleted
-    // for (let i = 0; i < result.count; i++) {
-    //   await decrementRepositoryCount(session.user.id);
-    // }
 
     revalidatePath("/dashboard/settings", "page");
     revalidatePath("/dashboard/repository", "page");
