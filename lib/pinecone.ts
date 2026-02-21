@@ -1,12 +1,7 @@
 import { Pinecone } from "@pinecone-database/pinecone";
 
-const apiKey = process.env.PINECONE_DB_API_KEY;
-if (!apiKey) {
-  throw new Error("PINECONE_DB_API_KEY environment variable is required");
-}
-
 export const pinecone = new Pinecone({
-  apiKey,
+  apiKey: process.env.PINECONE_DB_API_KEY!,
 });
 
-export const pineconeIndex = pinecone.Index("codehorse-vector-embedding-v3");
+export const pineconeIndex = pinecone.index("ai-code-review-vector-embeddings");
